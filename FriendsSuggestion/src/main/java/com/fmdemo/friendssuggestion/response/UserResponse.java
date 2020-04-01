@@ -10,8 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserResponse {
+	
 	@JsonProperty("message")
 	private String message;
+	
 	@JsonProperty("statusCode")
 	private Integer statusCode;
 

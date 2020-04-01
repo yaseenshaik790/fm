@@ -10,10 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "users")
 @Data
+@Setter
+@Getter
 public class User implements Serializable {
 
 	/**
@@ -33,5 +37,8 @@ public class User implements Serializable {
 
 	@Column(name = "gender")
 	private String gender;
+
+	@Column(name = "mutual_friends")
+	private Integer mutualFriends;
 
 }

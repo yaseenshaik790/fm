@@ -27,16 +27,7 @@ public class Friend implements Serializable {
 	@Column(name = "user_name")
 	private String userName;
 
-	@Column(name = "full_name")
-	private String fullName;
-
-	@Column(name = "gender")
-	private Character gender;
-
 	@Column(name = "user_id")
 	private Long userId;
-
-	@Column(name = "mutual_friend")
-	private Integer mutualFriends;
 
 }
