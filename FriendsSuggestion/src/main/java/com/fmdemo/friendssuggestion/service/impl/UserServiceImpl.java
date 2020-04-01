@@ -22,6 +22,7 @@ import com.fmdemo.friendssuggestion.exception.UserNotFoundException;
 import com.fmdemo.friendssuggestion.repository.FriendRepository;
 import com.fmdemo.friendssuggestion.repository.UserRepository;
 import com.fmdemo.friendssuggestion.response.FriendResponse;
+import com.fmdemo.friendssuggestion.response.SuggestionsResponse;
 import com.fmdemo.friendssuggestion.response.UserResponse;
 import com.fmdemo.friendssuggestion.service.api.UserService;
 
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private FriendRepository friendRepository;
+	
 
 	private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -45,9 +47,13 @@ public class UserServiceImpl implements UserService {
 			throw new UserAlreadyExcistException(userDTO.getUserName());
 		}
 		User userDetails = new User();
+		
 		BeanUtils.copyProperties(userDTO, userDetails);
+		
 		userRepository.save(userDetails);
+		
 		logger.info("member added successfully");
+		
 		return new UserResponse("Member added successfully ", 7676);
 	}
 
@@ -83,6 +89,19 @@ public class UserServiceImpl implements UserService {
 		logger.info("friends added successfully");
 
 		return new FriendResponse("Friends saved Successfully", 6878);
+	}
+
+	public SuggestionsResponse getSugestFriendsByUserName(String userName) {
+		Optional<User> user = userRepository.findByUserName(userName);
+
+		if (!user.isPresent()) {
+			logger.warn("user doesn't exist ");
+			throw new UserNotFoundException(userName);
+		}
+		
+		
+
+		return null;
 	}
 
 }

@@ -24,9 +24,6 @@ public class Friend implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long friendId;
 
-	@Column(name = "user_name")
-	private String userName;
-
 	@Column(name = "user_id")
 	private Long userId;
 

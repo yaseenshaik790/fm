@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fmdemo.friendssuggestion.dto.FriendsRequest;
 import com.fmdemo.friendssuggestion.dto.UserDTO;
 import com.fmdemo.friendssuggestion.response.FriendResponse;
+import com.fmdemo.friendssuggestion.response.SuggestionsResponse;
 import com.fmdemo.friendssuggestion.response.UserResponse;
 import com.fmdemo.friendssuggestion.service.api.UserService;
 
@@ -33,6 +36,7 @@ public class UserController {
 	public ResponseEntity<UserResponse> addMember(@Valid @RequestBody UserDTO userDTO) {
 
 		logger.info("enters into add member method to save the member");
+
 		return new ResponseEntity<>(userService.addMember(userDTO), HttpStatus.CREATED);
 
 	}
@@ -41,6 +45,13 @@ public class UserController {
 	public ResponseEntity<FriendResponse> addFriends(@Valid @RequestBody FriendsRequest friendsRequest) {
 		logger.info("enters into add friends method to save the friends ");
 		return new ResponseEntity<>(userService.addFriends(friendsRequest), HttpStatus.OK);
+	}
+
+	@GetMapping("/friends")
+	public ResponseEntity<SuggestionsResponse> getSugestFriendsByUserName(
+			@RequestParam(required = true) String userName) {
+
+		return new ResponseEntity<>(userService.getSugestFriendsByUserName(userName.trim()), HttpStatus.OK);
 
 	}
 

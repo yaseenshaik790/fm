@@ -31,6 +31,7 @@ public class UserControllerTest {
 
 	@BeforeEach
 	public void setUp() {
+		
 		user = new User();
 		user.setFullName(TestData.fullName);
 
@@ -39,7 +40,6 @@ public class UserControllerTest {
 
 		friend = new Friend();
 		friend.setUserId(TestData.userId);
-		friend.setUserName(TestData.FriendName);
 
 	}
 
@@ -55,6 +55,7 @@ public class UserControllerTest {
 		UserResponse userResponse = userService.addMember(userDto);
 
 		assertThat(userResponse.getMessage()).isEqualTo(userResponseEntity.getBody().getMessage());
+		
 		assertThat(userResponse.getStatusCode()).isEqualTo(userResponseEntity.getBody().getStatusCode());
 
 	}

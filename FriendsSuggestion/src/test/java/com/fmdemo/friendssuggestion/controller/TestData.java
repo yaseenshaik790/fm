@@ -9,7 +9,5 @@ public interface TestData {
 
 	public static final Long userId1 = 20l;
 	public static final String userName1 = "Naveen ";
-	public static final String fullName1 = "Naveen Kumar";
 
-	public static final String FriendName1 = "Yaseen Shaik";
 }

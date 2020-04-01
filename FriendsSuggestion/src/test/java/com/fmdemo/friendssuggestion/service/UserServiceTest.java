@@ -21,7 +21,6 @@ import com.fmdemo.friendssuggestion.entity.Friend;
 import com.fmdemo.friendssuggestion.entity.User;
 import com.fmdemo.friendssuggestion.repository.FriendRepository;
 import com.fmdemo.friendssuggestion.repository.UserRepository;
-import com.fmdemo.friendssuggestion.response.FriendResponse;
 import com.fmdemo.friendssuggestion.response.UserResponse;
 import com.fmdemo.friendssuggestion.service.api.UserService;
 
@@ -57,8 +56,7 @@ public class UserServiceTest {
 
 		friend = new Friend();
 		friend.setUserId(TestData.userId);
-		friend.setUserName(TestData.FriendName);
-		
+
 		friendDto = new FriendDTO();
 		friendDto.setUserName(TestData.userName);
 
