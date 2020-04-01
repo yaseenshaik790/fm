@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.fmdemo.friendssuggestion.dto.FriendDTO;
 import com.fmdemo.friendssuggestion.dto.FriendsRequest;
 import com.fmdemo.friendssuggestion.dto.UserDTO;
 import com.fmdemo.friendssuggestion.entity.Friend;
 import com.fmdemo.friendssuggestion.entity.User;
+import com.fmdemo.friendssuggestion.exception.FriendRequestNotFoundException;
 import com.fmdemo.friendssuggestion.exception.UserAlreadyExcistException;
 import com.fmdemo.friendssuggestion.exception.UserNotFoundException;
 import com.fmdemo.friendssuggestion.repository.FriendRepository;
@@ -58,6 +60,10 @@ public class UserServiceImpl implements UserService {
 		}
 
 		List<FriendDTO> friendDTOs = friendsRequest.getFriends();
+
+		if (CollectionUtils.isEmpty(friendDTOs)) {
+			throw new FriendRequestNotFoundException();
+		}
 
 		List<Friend> friends = friendDTOs.stream().map(friend -> {
 			Friend dto = new Friend();
